@@ -20,29 +20,33 @@ window.findNRooksSolution = function(n) {
   
   //make function that will be called recursively
   //populates board
-  let populate = function(row){
+  let search = function(row){
     //if row is undefined set it to 0
      row = row || 0;
     //base case
     if(row === n){
-      
+      //return rows
       return newBoard.rows();
     }else{
-      for(let col = 0; col < n; col++){
-        newBoard.togglePiece(row, col);
+      //loop through column
+      for(let column = 0; column < n; column++){
+        //put piece on board at row and column
+        newBoard.togglePiece(row, column);
 //if our newBoard doesn't have any conflicts
-//recursive call, to go to next row
-        if(!newBoard.hasAnyRooksConflicts()){
-          // console.log(row)
-           return populate(row + 1);
+if(!newBoard.hasAnyRooksConflicts()){
+  // console.log(row)
+  //recursive call, to go to next row
+           return search(row + 1);
         }
-//other
-          newBoard.togglePiece(row, col);
+//if conflicts remove piece
+          newBoard.togglePiece(row, column);
       }
     }
   };
-let solution = populate();
+  //set solution to search function call
+let solution = search();
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
+  //return solution
   return solution;
 };
 
