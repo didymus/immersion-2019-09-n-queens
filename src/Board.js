@@ -139,20 +139,24 @@
       let column = majorDiagonalColumnIndexAtFirstRow;
       let num = column;
       for(let row = 0; row < table.length; row++){
-        if(table[row][num] === undefined){
-          count += table[row][column]
+        if(table[row][num] === 1){
+          count++
         }
-        column++
+        num++
        
       }
 
-      return count > 1;
+     if(count >= 2){
+       return true
+     }else{
+       return false;
+     }
       
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      for(let i = 0; i < this.get('n'); i++){
+      for(let i = 0; i < this.rows().length - 1; i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return true;
         }

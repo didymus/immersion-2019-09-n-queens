@@ -92,44 +92,44 @@ window.findNQueensSolution = function(n) {
   let search = function(row){
 
 
-    
-//  row = row || 0;
-// if(n === row){
-// let count = 0;
-// //loop over columns
-// for(let i = 0; i < (newBoard.rows()).length; i++){
-//   for(let j= 0; j < (newBoard.rows())[i].length; j++){
-//     count += newBoard.rows()[i][j];
-//   }
-// }
-//   //add piece on board
-//   if(count === n || n === 0){
-//     solution.push(newBoard.rows());
-//     return;
-//   }
+
+ row = row || 0;
+if(n === row){
+let count = 0;
+//loop over columns
+for(let i = 0; i < (newBoard.rows()).length; i++){
+  for(let j= 0; j < (newBoard.rows())[i].length; j++){
+    count += newBoard.rows()[i][j];
+  }
+}
+  //add piece on board
+  if(count === n || n === 0){
+    solution.push(newBoard.rows());
+    return;
+  }
  
-// }else{
-//   for(let column = 0; column < n; column++){
-//     newBoard.togglePiece(row, column);
-//     if(!newBoard.hasAnyQueenConflictsOn(row,column)){
-//       search(row + 1);
-//       if(solution.length === 1){
-//         return;
-//       }
-//       newBoard.togglePiece(row, column);
-//     }
-//   }
-// }
-//  solution[0] = search();
-// if(solution[0] === undefined){
-//   solution[0] = newBoard.rows();
-// }
-//   }
- 
+}else{
+  for(let column = 0; column < n; column++){
+    newBoard.togglePiece(row, column);
+    if(!newBoard.hasAnyQueenConflictsOn(row,column)){
+      search(row + 1);
+      if(solution.length === 1){
+        return;
+      }
+      newBoard.togglePiece(row, column);
+    }
+  }
+}
+ solution[0] = search();
+if(solution[0] === undefined){
+  solution[0] = newBoard.rows();
+}
+  }
 
 
-  console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution[0]));
-  return solution[0];
+
+  console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
+  return solution;
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
