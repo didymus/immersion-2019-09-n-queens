@@ -17,14 +17,14 @@
 window.findNRooksSolution = function(n) {
   //make new board
   let newBoard = new Board({'n':n})
-  
+  // let solution = [];
   //make function that will be called recursively
   //populates board
   let search = function(row){
     //if row is undefined set it to 0
      row = row || 0;
     //base case
-    if(row === n){
+    if(n === row){
       //return rows
       return newBoard.rows();
     }else{
@@ -52,9 +52,29 @@ let solution = search();
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  let solutionCount = undefined; // fixme
+  let solutionCount = 0; // fixme
+  //make newBoard
+  let newBoard = new Board({'n':n}) ;
 
+  let search = function(row){
+    debugger;
+    row = row || 0;
+    if(n === row){
+      solutionCount++;
+    }else{
+      for(let column = 0; column < n; column++){
+        newBoard.togglePiece(row, column);
+        // console.log(newBoard)
+        if(!newBoard.hasColConflictAt(column)){
+          search(row + 1);
+        }
+        newBoard.togglePiece(row, column);
+      }
+    }
+  }
+  search();
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
+  console.log(solutionCount)
   return solutionCount;
 };
 
