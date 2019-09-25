@@ -79,17 +79,22 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
+      //set table to rows
       let table = this.rows();
+      //set count to 0
       let count = 0;
+      //loop over rows
       for(let i = 0; i < table.length; i++){
+        //if there is something in row add to count
         count += table[rowIndex][i];
       }
+      //otherwise, there is a row conflict
       return count > 1;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      for(let i = 0; i < this.get('n'); i++){
+      for( let i = 0; i < this.get('n'); i++){
         if(this.hasRowConflictAt(i)){
           return true;
         }
@@ -104,12 +109,12 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      let table = this.rows();
-      let count = 0;
-      for(let i = 0; i < table.length; i++){
-        count += table[i][colIndex];
-      }
-      return count > 1;
+     let table = this.rows();
+     let count = 0;
+     for(let i = 0; i < table.length; i++){
+       count += table[i][colIndex];
+     }
+     return count > 1;
     },
 
     // test if any columns on this board contain conflicts
@@ -132,14 +137,17 @@
       let table = this.rows();
       let count = 0;
       let column = majorDiagonalColumnIndexAtFirstRow;
-
-      for(let row = 0; row < this.get('n'); row++){
-        if(table[row][column] !== undefined){
-          count += table[row][column];
+      let num = column;
+      for(let row = 0; row < table.length; row++){
+        if(table[row][num] === undefined){
+          count += table[row][column]
         }
-        column++;
+        column++
+       
       }
+
       return count > 1;
+      
     },
 
     // test if any major diagonals on this board contain conflicts
@@ -162,7 +170,6 @@
       let table = this.rows();
       let count = 0;
       let column = minorDiagonalColumnIndexAtFirstRow;
-
       for(let row = 0; row < this.get('n'); row++){
         if(table[row][column] !== undefined){
           count += table[row][column];
