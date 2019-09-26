@@ -131,9 +131,8 @@ return count > 1;
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow){
 let size = this.get('n');
 let count = 0;
-let rowIndex = 0;
 let columnIndex = majorDiagonalColumnIndexAtFirstRow;
-for(; rowIndex < size && columnIndex < size; rowIndex++, columnIndex++){
+      for(rowIndex = 0; rowIndex < size && columnIndex < size; rowIndex++, columnIndex++){
   if(columnIndex >= 0){
     let row = this.get(rowIndex);
     count += row[columnIndex];
@@ -162,9 +161,8 @@ return count > 1;
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow){
   let size = this.get('n');
   let count = 0;
-  let rowIndex = 0;
   let columnIndex = minorDiagonalColumnIndexAtFirstRow;
-      for(; rowIndex < size && columnIndex >= 0; rowIndex++, columnIndex--){
+      for(rowIndex = 0; rowIndex < size && columnIndex >= 0; rowIndex++, columnIndex--){
         if(columnIndex < size){
         let row = this.get(rowIndex);
         count += row[columnIndex];
