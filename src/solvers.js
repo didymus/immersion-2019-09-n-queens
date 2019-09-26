@@ -21,7 +21,7 @@ window.findNRooksSolution = function(n) {
   //populates board
   let search = function(row){
     //if row is undefined set it to 0
-     row = row || 0;
+    row = row || 0;
     //base case
     if(n === row){
       //return rows
@@ -34,8 +34,8 @@ window.findNRooksSolution = function(n) {
 //if our newBoard doesn't have any conflicts
 if(!newBoard.hasAnyRooksConflicts()){
   //recursive call, to go to next row
-           return search(row + 1);
-        }
+        return search(row + 1);
+    }
 //if conflicts remove piece
           newBoard.togglePiece(row, column);
       }
@@ -52,7 +52,7 @@ let solution = search();
 window.countNRooksSolutions = function(n) {
   let solutionCount = 0;
   //make newBoard
-  let newBoard = new Board({n:n}) ;
+  let newBoard = new Board({n:n});
 //make search function
   let search = function(row){
     //if row is undefined set it to 0
@@ -88,7 +88,6 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-
 
 findQueenSolution = function(board, startRow, rows, callback){
   if(startRow === rows){
